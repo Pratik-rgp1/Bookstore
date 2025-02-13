@@ -10,6 +10,7 @@ namespace BookstoreWeb.Models
         [Required]
         [MaxLength(100)]
         [DisplayName("Category Name")]
+        
         public string Name { get; set; }
         [Required]
         //validation for display name

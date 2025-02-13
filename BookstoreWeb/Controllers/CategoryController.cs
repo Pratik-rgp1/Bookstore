@@ -27,7 +27,11 @@ namespace BookstoreWeb.Controllers
         public IActionResult Create(Category obj)
         {
             //for validation
-            if(ModelState.IsValid)
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "The category name must not be the same as display order");
+            }
+            if (ModelState.IsValid)
             {
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
@@ -36,6 +40,20 @@ namespace BookstoreWeb.Controllers
             return View();
         }
 
-        
+        public IActionResult Edit(int? id)
+        {
+            if(id == null || id==0)
+            {
+                return NotFound();
+            }
+            Category categoryFromDb = _db.Categories.Find(id);
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(categoryFromDb);
+        }
+
+
     }
 }
