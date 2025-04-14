@@ -29,6 +29,14 @@ namespace BookstoreWeb.Areas.Admin.Controllers
         public IActionResult Create(Category obj)
         {
             //for validation
+           
+            //if (obj == null)
+            //{
+            //    return BadRequest("Category object is null.");
+            //}
+            //Console.WriteLine($"Category Name: {obj.Name}, DisplayOrder: {obj.DisplayOrder}");
+
+
             if (obj.Name == obj.DisplayOrder.ToString())
             {
                 ModelState.AddModelError("name", "The category name must not be the same as display order");

@@ -19,5 +19,8 @@ namespace Bookstore.Models
         [DisplayName("Display Order")]
         [Range(1, 100, ErrorMessage = "Display Order must be between 1 to 100.")]
         public string DisplayOrder { get; set; }
+
+        // Navigation property for related products
+        //public List<Product> Products { get; set; }
     }
 }

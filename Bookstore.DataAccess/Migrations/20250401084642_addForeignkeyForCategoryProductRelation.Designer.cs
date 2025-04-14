@@ -3,6 +3,7 @@ using Bookstore.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bookstore.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250401084642_addForeignkeyForCategoryProductRelation")]
+    partial class addForeignkeyForCategoryProductRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,10 +89,6 @@ namespace Bookstore.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("ListPrice")
                         .HasColumnType("float");
 
@@ -120,7 +119,6 @@ namespace Bookstore.DataAccess.Migrations
                             CategoryId = 1,
                             Description = "A thrilling mystery novel that keeps you on edge.",
                             ISBN = "DSK888002",
-                            ImageUrl = "",
                             ListPrice = 120.0,
                             Price = 110.0,
                             Price100 = 100.0,
@@ -134,7 +132,6 @@ namespace Bookstore.DataAccess.Migrations
                             CategoryId = 2,
                             Description = "A fast-paced adventure filled with secrets and history.",
                             ISBN = "TLS777003",
-                            ImageUrl = "",
                             ListPrice = 150.0,
                             Price = 140.0,
                             Price100 = 130.0,
@@ -148,7 +145,6 @@ namespace Bookstore.DataAccess.Migrations
                             CategoryId = 3,
                             Description = "A complete guide to mastering C# and .NET development.",
                             ISBN = "CSM666004",
-                            ImageUrl = "",
                             ListPrice = 200.0,
                             Price = 180.0,
                             Price100 = 160.0,

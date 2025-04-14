@@ -1,0 +1,123 @@
+﻿@model ProductViewModel
+
+<div class="container my-5">
+    <div class="card shadow-sm p-4" style="background-color: #e8f5e9; border: none;">
+        <div class="card-header text-center" style="background-color: #a5d6a7; color: #1b5e20; border-radius: 8px;">
+            <h2 class="text-white py-2">@(Model.Product.Id != 0 ? "Update" : "Create") Product</h2>
+        </div>
+
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                @* Form for creating/updating a product; enctype required for image upload *@
+                <input asp-for="Product.Id" hidden /> @* Hidden input to hold product ID (used for update) *@
+                <input asp-for="Product.ImageUrl" hidden/>
+                <div class="row">
+                    <div class="col-10">
+                        @* Title *@
+                        <div class="mb-3">
+                            <label asp-for="Product.Title" class="form-label fw-bold"></label>
+                            <input asp-for="Product.Title" class="form-control" placeholder="Title of the Book" />
+                            <span asp-validation-for="Product.Title" class="text-danger"></span>
+                        </div>
+
+                        @* Description *@
+                        <div class="mb-3">
+                            <label asp-for="Product.Description" class="form-label fw-bold"></label>
+                            <textarea asp-for="Product.Description" class="form-control" placeholder="Description of the Book"></textarea>
+                        </div>
+
+                        @* ISBN *@
+                        <div class="mb-3">
+                            <label asp-for="Product.ISBN" class="form-label fw-bold"></label>
+                            <input asp-for="Product.ISBN" class="form-control" placeholder="ISBN" />
+                            <span asp-validation-for="Product.ISBN" class="text-danger"></span>
+                        </div>
+
+                        @* Author *@
+                        <div class="mb-3">
+                            <label asp-for="Product.Author" class="form-label fw-bold"></label>
+                            <input asp-for="Product.Author" class="form-control" placeholder="Author of the book" />
+                            <span asp-validation-for="Product.Author" class="text-danger"></span>
+                        </div>
+
+                        @* List Price *@
+                        <div class="mb-3">
+                            <label asp-for="Product.ListPrice" class="form-label fw-bold"></label>
+                            <input asp-for="Product.ListPrice" class="form-control" placeholder="List Price of the book" />
+                            <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+                        </div>
+
+                        @* Regular Price *@
+                        <div class="mb-3">
+                            <label asp-for="Product.Price" class="form-label fw-bold"></label>
+                            <input asp-for="Product.Price" class="form-control" placeholder="Price of the book" />
+                            <span asp-validation-for="Product.Price" class="text-danger"></span>
+                        </div>
+
+                        @* Price for quantity > 50 *@
+                        <div class="mb-3">
+                            <label asp-for="Product.Price50" class="form-label fw-bold"></label>
+                            <input asp-for="Product.Price50" class="form-control" placeholder="Price of the book for more than 50" />
+                            <span asp-validation-for="Product.Price50" class="text-danger"></span>
+                        </div>
+
+                        @* Price for quantity > 100 *@
+                        <div class="mb-3">
+                            <label asp-for="Product.Price100" class="form-label fw-bold"></label>
+                            <input asp-for="Product.Price100" class="form-control" placeholder="Price of the book for more than 100" />
+                            <span asp-validation-for="Product.Price100" class="text-danger"></span>
+                        </div>
+
+                        @* Category Dropdown *@
+                        <div class="mb-3">
+                            <label asp-for="Product.CategoryId" class="form-label fw-bold"></label>
+                            <select asp-for="@Model.Product.CategoryId" asp-items="@Model.CategoryList" class="form-select">
+                                <option disabled selected>--Select Category--</option>
+                            </select>
+                            <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                        </div>
+
+                        @* Image Upload Input *@
+                        <div class="mb-3">
+                            <label asp-for="Product.ImageUrl" class="form-label fw-bold"></label>
+                            <input type="file" name="file" class="form-control" />
+                        </div>
+
+                        @* Submit & Back Buttons *@
+                        <div class="d-flex justify-content-start gap-3">
+                            @if (Model.Product.Id != 0)
+                            {
+                                <button type="submit" class="btn" style="background-color: #66bb6a; color: white; border-radius: 5px;">Update</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn" style="background-color: #66bb6a; color: white; border-radius: 5px;">Create</button>
+                            }
+
+                            <a asp-controller="Product" asp-action="Index" class="btn btn-outline-success" style="border-radius: 5px;">Back to List</a>
+                        </div>
+                    </div>
+
+                    @* Image Preview Column *@
+                    <div class="col-2">
+                        <img src="@Model.Product.ImageUrl" width="100%" style="border-radius:5px;border:1px solid #bbb9b9" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Initialize TinyMCE rich-text editor for the description field
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons lists table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent',
+        });
+    </script>
+
+    @* Client-side validation scripts *@
+    <partial name="_ValidationScriptsPartial" />
+}

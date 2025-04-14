@@ -11,4 +11,5 @@ namespace Bookstore.DataAccess.Repository.IRepository
     {
         void Update(Product obj);
     }
+
 }

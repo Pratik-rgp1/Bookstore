@@ -1,0 +1,56 @@
+﻿@using Bookstore.Models
+@model Product
+
+<div class="container my-5">
+    <div class="card shadow-sm p-4" style="background-color: #ffebee; border: none;">
+        <div class="card-header text-center" style="background-color: #e57373; color: white; border-radius: 8px;">
+            <h2>Delete Product</h2>
+        </div>
+        <div class="card-body">
+            <p class="text-danger text-center fw-bold">Are you sure you want to delete this product?</p>
+
+            <form method="post">
+                <!-- Hidden Input to Pass Product ID -->
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Title:</label>
+                    <p class="form-control-plaintext">@Model.Title</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Description:</label>
+                    <p class="form-control-plaintext">@Model.Description</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">ISBN:</label>
+                    <p class="form-control-plaintext">@Model.ISBN</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Author:</label>
+                    <p class="form-control-plaintext">@Model.Author</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">List Price:</label>
+                    <p class="form-control-plaintext">@Model.ListPrice</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Price:</label>
+                    <p class="form-control-plaintext">@Model.Price</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Price (50+ units):</label>
+                    <p class="form-control-plaintext">@Model.Price50</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Price (100+ units):</label>
+                    <p class="form-control-plaintext">@Model.Price100</p>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3">
+                    <button type="submit" class="btn btn-danger px-4">Delete</button>
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-outline-dark px-4">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

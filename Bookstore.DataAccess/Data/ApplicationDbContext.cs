@@ -31,7 +31,9 @@ namespace Bookstore.DataAccess.Data
                    ListPrice = 120,
                    Price = 110,
                    Price50 = 105,
-                   Price100 = 100
+                   Price100 = 100,
+                   CategoryId=1,
+                   ImageUrl=""
                },
                 new Product
                 {
@@ -43,7 +45,9 @@ namespace Bookstore.DataAccess.Data
                     ListPrice = 150,
                     Price = 140,
                     Price50 = 135,
-                    Price100 = 130
+                    Price100 = 130,
+                    CategoryId = 2,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -55,7 +59,9 @@ namespace Bookstore.DataAccess.Data
                     ListPrice = 200,
                     Price = 180,
                     Price50 = 170,
-                    Price100 = 160
+                    Price100 = 160,
+                     CategoryId = 3,
+                    ImageUrl = ""
                 }
 
                 );
